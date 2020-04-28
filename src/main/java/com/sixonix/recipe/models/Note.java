@@ -1,7 +1,12 @@
 package com.sixonix.recipe.models;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 import javax.persistence.*;
 
+@Data
+@EqualsAndHashCode(exclude = {"recipe"})
 @Entity
 public class Note {
     @Id
@@ -12,27 +17,11 @@ public class Note {
     @OneToOne
     private Recipe recipe;
 
-    public Long getId() {
-        return id;
+    public Note() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    protected boolean canEqual(final Object other) {
+        return other instanceof Note;
     }
 
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-
-    public Recipe getRecipe() {
-        return recipe;
-    }
-
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
-    }
 }
